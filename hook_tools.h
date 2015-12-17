@@ -1,10 +1,11 @@
 //This header contains several functions used internally by GPTP.
 
 #pragma once
-#include "types.h"
-#define NOMINMAX
+
 #define WIN32_LEAN_AND_MEAN
+
 #include <windows.h>
+#include <cstdint>
 
 /// Injects a JMP to [target] at the [position], optionally overwriting [nops]
 /// bytes with NOPs.
@@ -49,12 +50,12 @@ inline void callPatch(const void* target, DWORD position, unsigned int nops = 0)
 
 /// Patches the specified address with the given data using memcpy().
 template <typename T>
-void memoryPatch(const u32 address, const T& data) {
+void memoryPatch(const void* address, const T& data) {
   memoryPatch(address, (u8*)&data, sizeof(T));
 }
 
 /// Inject an array of bytes, using the given size.
-void memoryPatch(void* const address, const u8* data, const size_t size);
-inline void memoryPatch(const u32 address, const u8* data, const size_t size) {
+void memoryPatch(void* const address, const uint8_t* data, const size_t size);
+inline void memoryPatch(const void* address, const uint8_t* data, const size_t size) {
   memoryPatch((void*)address, data, size);
 }

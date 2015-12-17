@@ -107,7 +107,7 @@
 #ifndef QDPLUGIN_H
 #define QDPLUGIN_H
 
-#include <windows.h>
+#include <Windows.h>
 
 // The maximum length of a plugin module's filename. INCLUDES final NULL.
 #define MPQDRAFT_MAX_PATH 264
